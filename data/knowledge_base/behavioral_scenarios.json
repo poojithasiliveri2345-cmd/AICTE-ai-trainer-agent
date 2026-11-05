@@ -1,0 +1,52 @@
+[
+  {
+    "id": "bs_teamwork_conflict",
+    "scenario": "Tell me about a time when you had a conflict with a coworker.",
+    "competency": "Conflict Resolution",
+    "applicable_roles": ["all"],
+    "evaluation_criteria": ["identifies root cause", "shows empathy", "describes constructive action", "positive outcome"],
+    "model_answer_structure": "Situation: Briefly describe the working relationship and the disagreement. Task: What was at stake? Action: How did you address it directly and professionally? Result: What improved as a result?",
+    "red_flags": ["blames the other person entirely", "never resolved", "involved management for a minor issue"],
+    "tips": "Show that you can navigate interpersonal friction maturely. Interviewers want to see emotional intelligence."
+  },
+  {
+    "id": "bs_failure",
+    "scenario": "Tell me about your biggest professional failure.",
+    "competency": "Growth Mindset",
+    "applicable_roles": ["all"],
+    "evaluation_criteria": ["genuine accountability", "specific learnings", "what changed afterward", "no blame-shifting"],
+    "model_answer_structure": "Situation: Set the context honestly. Task: What were you responsible for? Action: What went wrong and what was your role in it? Result: What did you learn and how have you applied it since?",
+    "red_flags": ["can't think of a failure", "blames external factors only", "no clear learning"],
+    "tips": "The best failure stories show a real mistake, genuine reflection, and changed behavior. Authenticity matters more than the severity of the failure."
+  },
+  {
+    "id": "bs_ambiguity",
+    "scenario": "Describe a time you had to make a decision with incomplete information.",
+    "competency": "Decision Making Under Uncertainty",
+    "applicable_roles": ["software_engineer", "product_manager", "data_scientist"],
+    "evaluation_criteria": ["structured reasoning", "identified assumptions", "mitigated risks", "communicated uncertainty"],
+    "model_answer_structure": "Situation: What decision was needed and why was info incomplete? Task: What were the stakes? Action: How did you reason through it — what data did you gather, what assumptions did you make explicit? Result: What happened and what would you do differently?",
+    "red_flags": ["waited indefinitely for certainty", "made decision without any reasoning", "ignored risk"],
+    "tips": "Senior roles especially value this — show a principled decision-making process, not just a lucky outcome."
+  },
+  {
+    "id": "bs_innovation",
+    "scenario": "Tell me about a time you proposed and implemented an improvement process or tool.",
+    "competency": "Initiative & Innovation",
+    "applicable_roles": ["software_engineer", "devops_engineer", "data_scientist"],
+    "evaluation_criteria": ["identified the problem independently", "built conviction", "drove implementation", "measurable impact"],
+    "model_answer_structure": "Situation: What was the inefficiency or opportunity? Task: Who owned it (typically you did, and that's the point). Action: How did you design, propose, and drive the change? Result: Quantified improvement (time saved, error reduction, velocity gain).",
+    "red_flags": ["was assigned the task, not self-initiated", "no measurable outcome", "abandoned half-done"],
+    "tips": "Quantify your impact whenever possible. 'Reduced deploy time from 45 minutes to 8 minutes' is far stronger than 'improved our pipeline'."
+  },
+  {
+    "id": "bs_cross_functional",
+    "scenario": "Describe a project that required collaboration across multiple teams or departments.",
+    "competency": "Cross-Functional Collaboration",
+    "applicable_roles": ["all"],
+    "evaluation_criteria": ["alignment across teams", "communication strategy", "trade-off navigation", "successful delivery"],
+    "model_answer_structure": "Situation: What was the project scope and who were the stakeholders? Task: What was your role in the cross-functional context? Action: How did you align teams, resolve conflicting priorities, and keep communication flowing? Result: Delivered outcome and what you learned about collaboration.",
+    "red_flags": ["minimized others' roles", "no mention of communication challenges", "no mention of alignment process"],
+    "tips": "This question tests your ability to work beyond your immediate team. Emphasize listening, shared goals, and clear communication over technical work."
+  }
+]

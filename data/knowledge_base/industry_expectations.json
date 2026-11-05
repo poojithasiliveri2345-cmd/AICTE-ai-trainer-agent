@@ -1,0 +1,73 @@
+[
+  {
+    "role": "Software Engineer",
+    "company_type": "FAANG",
+    "interview_rounds": ["Phone Screen", "Technical Phone Screen", "Onsite: Coding x2", "Onsite: System Design", "Onsite: Behavioral"],
+    "focus_areas": ["Data Structures & Algorithms", "System Design", "Object-Oriented Design", "Leadership Principles"],
+    "coding_format": "LeetCode-style problems (medium to hard difficulty)",
+    "time_per_round": "45-60 minutes",
+    "tips": [
+      "Practice on a whiteboard or blank editor — no autocomplete in real interviews",
+      "Think aloud constantly — interviewers evaluate your reasoning process",
+      "Clarify edge cases before writing any code",
+      "Start with a brute-force approach, then optimize",
+      "Test your code with examples including edge cases"
+    ]
+  },
+  {
+    "role": "Software Engineer",
+    "company_type": "Startup",
+    "interview_rounds": ["Recruiter Screen", "Technical Take-Home or Pair Programming", "Culture Fit + System Design"],
+    "focus_areas": ["Full-Stack Breadth", "Ship-it Mentality", "Debugging Live Code", "System Pragmatism"],
+    "coding_format": "Take-home project or pair programming on real codebase",
+    "time_per_round": "60-90 minutes",
+    "tips": [
+      "Show that you can own features end-to-end",
+      "Demonstrate pragmatism — 'good enough now vs perfect later' decision-making",
+      "Ask about the tech stack beforehand and brush up on it",
+      "Emphasize past ownership and shipping experience"
+    ]
+  },
+  {
+    "role": "Data Scientist",
+    "company_type": "Tech Company",
+    "interview_rounds": ["Recruiter Screen", "SQL/Statistics Assessment", "Case Study / ML Design", "Behavioral"],
+    "focus_areas": ["Statistics & Probability", "SQL", "ML Modeling", "A/B Testing", "Business Acumen"],
+    "coding_format": "SQL queries, Python data manipulation, statistical reasoning",
+    "time_per_round": "45-60 minutes",
+    "tips": [
+      "Know your SQL window functions, CTEs, and joins inside-out",
+      "Be comfortable with A/B test design: power analysis, p-values, confidence intervals",
+      "Frame ML solutions in terms of business impact",
+      "Prepare a 10-minute walkthrough of your best project"
+    ]
+  },
+  {
+    "role": "Product Manager",
+    "company_type": "Tech Company",
+    "interview_rounds": ["Recruiter Screen", "PM Interview: Estimation", "PM Interview: Product Design", "PM Interview: Strategy", "PM Interview: Behavioral"],
+    "focus_areas": ["Product Sense", "Analytical Thinking", "Prioritization", "Execution", "Leadership"],
+    "coding_format": "No coding — case studies, frameworks, structured communication",
+    "time_per_round": "45-60 minutes",
+    "tips": [
+      "Structure every answer — use frameworks like CIRCLES or STAR",
+      "Always clarify the goal before diving into a solution",
+      "Back claims with data or logical estimation",
+      "Show empathy for the user in every product discussion"
+    ]
+  },
+  {
+    "role": "DevOps Engineer",
+    "company_type": "Enterprise",
+    "interview_rounds": ["Technical Phone Screen", "Hands-on Lab / Scripting Challenge", "Systems Design for Infrastructure", "Behavioral"],
+    "focus_areas": ["Linux/Shell Scripting", "CI/CD Pipelines", "Cloud Platforms (AWS/Azure/GCP)", "Kubernetes/Docker", "Security"],
+    "coding_format": "Shell scripting, Terraform snippets, pipeline YAML",
+    "time_per_round": "45-60 minutes",
+    "tips": [
+      "Know your Linux commands cold — file permissions, process management, networking",
+      "Be ready to design a full CI/CD pipeline from scratch",
+      "Understand least-privilege security principles for cloud IAM",
+      "Practice drawing architecture diagrams clearly and quickly"
+    ]
+  }
+]

@@ -1,0 +1,272 @@
+{
+  "software_engineer": {
+    "entry": {
+      "technical": [
+        {
+          "question": "What is the difference between a stack and a queue?",
+          "category": "Data Structures",
+          "difficulty": "easy",
+          "model_answer": "A stack follows LIFO (Last In, First Out) order — elements are added and removed from the same end (top). A queue follows FIFO (First In, First Out) order — elements are added at the rear and removed from the front. Common use cases: stacks for undo operations and function call management; queues for task scheduling and BFS.",
+          "tips": "Always relate your answer to a real-world example to demonstrate understanding."
+        },
+        {
+          "question": "Explain the concept of time complexity and Big-O notation.",
+          "category": "Algorithms",
+          "difficulty": "easy",
+          "model_answer": "Time complexity measures how the runtime of an algorithm scales with input size. Big-O notation describes the worst-case growth rate. O(1) is constant, O(log n) logarithmic, O(n) linear, O(n log n) linearithmic, O(n²) quadratic. Choosing efficient algorithms is crucial for scalable systems.",
+          "tips": "Be prepared to analyze a simple code snippet and state its Big-O complexity."
+        },
+        {
+          "question": "What is object-oriented programming and its four pillars?",
+          "category": "OOP",
+          "difficulty": "easy",
+          "model_answer": "OOP models software around objects combining data (attributes) and behavior (methods). The four pillars are: Encapsulation (bundling data with methods and restricting direct access), Abstraction (exposing only essential details), Inheritance (deriving new classes from existing ones), and Polymorphism (same interface, different implementations).",
+          "tips": "Illustrate each pillar with a brief code snippet or real-world analogy."
+        },
+        {
+          "question": "What is version control and why is Git important?",
+          "category": "Tools",
+          "difficulty": "easy",
+          "model_answer": "Version control tracks changes to code over time, enabling collaboration and rollback. Git is a distributed VCS where every developer has a full copy of the repository. Key concepts: branches, commits, merges, pull requests. GitHub/GitLab host remote repositories enabling team workflows like feature branching and code review.",
+          "tips": "Mention branching strategies (GitFlow, trunk-based) to stand out."
+        },
+        {
+          "question": "Describe the difference between SQL and NoSQL databases.",
+          "category": "Databases",
+          "difficulty": "medium",
+          "model_answer": "SQL databases are relational, schema-based, use structured tables and ACID transactions (e.g., PostgreSQL, MySQL). NoSQL databases are schema-flexible, distributed, optimized for specific data models — document (MongoDB), key-value (Redis), column-family (Cassandra), graph (Neo4j). Choose SQL for complex queries and strong consistency; NoSQL for scalability and flexible schemas.",
+          "tips": "Cite a scenario where you would choose one over the other."
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about a time you debugged a difficult problem.",
+          "category": "Problem Solving",
+          "model_answer": "Use the STAR method: Situation — describe the bug context; Task — what needed to be resolved; Action — your systematic debugging approach (logs, breakpoints, isolating components); Result — the fix and what you learned. Emphasize your analytical thinking and persistence.",
+          "tips": "Be specific; vague answers reduce credibility. Mention tools used."
+        },
+        {
+          "question": "How do you handle tight deadlines?",
+          "category": "Time Management",
+          "model_answer": "Prioritize tasks by impact, communicate early if scope is at risk, break work into milestones, avoid perfectionism on non-critical paths, and ask for help when blocked. Cite a concrete example where you delivered under pressure.",
+          "tips": "Demonstrate self-awareness and proactive communication — not just 'I work harder'."
+        }
+      ],
+      "hr": [
+        {
+          "question": "Why do you want to work at this company?",
+          "model_answer": "Research the company's products, culture, and engineering challenges beforehand. Align your goals with their mission. Mention specific projects, technologies, or team values that excite you. Avoid generic answers about 'great culture'.",
+          "tips": "Personalize to the specific company — generic answers are red flags for interviewers."
+        },
+        {
+          "question": "Where do you see yourself in 5 years?",
+          "model_answer": "Express genuine growth ambitions while showing commitment. For engineers: technical depth (becoming a senior/staff engineer or architect) or breadth (moving into tech lead or product). Show that your trajectory aligns with what this role offers.",
+          "tips": "Avoid 'in your position' jokes. Stay realistic and role-aligned."
+        }
+      ]
+    },
+    "mid": {
+      "technical": [
+        {
+          "question": "Explain the CAP theorem in distributed systems.",
+          "category": "Distributed Systems",
+          "difficulty": "medium",
+          "model_answer": "The CAP theorem states that a distributed system can guarantee at most two of three properties simultaneously: Consistency (all nodes see the same data), Availability (every request gets a response), and Partition Tolerance (system operates despite network partitions). Since partition tolerance is practically mandatory in distributed systems, you typically choose between CP (e.g., HBase) and AP (e.g., Cassandra) systems.",
+          "tips": "Be prepared to discuss eventual consistency and its trade-offs."
+        },
+        {
+          "question": "What design patterns have you used and when?",
+          "category": "Design Patterns",
+          "difficulty": "medium",
+          "model_answer": "Common patterns: Singleton (single instance — config managers), Factory (object creation abstraction — UI components), Observer (event-driven systems — notifications), Strategy (interchangeable algorithms — sorting), Repository (data access abstraction). Always explain the problem each pattern solves, not just its definition.",
+          "tips": "Pick 2-3 patterns you've actually used and explain the real context."
+        },
+        {
+          "question": "How would you design a URL shortener like bit.ly?",
+          "category": "System Design",
+          "difficulty": "hard",
+          "model_answer": "Key components: API layer (POST /shorten, GET /:code), base62 encoding for short codes (7 chars = 3.5 trillion combinations), NoSQL store (Redis for hot lookups, Cassandra for persistence), CDN for redirect speed, rate limiting, analytics pipeline. Discuss scaling: horizontal API servers, read replicas, cache eviction policies.",
+          "tips": "Always clarify requirements (scale, latency SLA, analytics needs) before designing."
+        },
+        {
+          "question": "Describe how you approach code reviews.",
+          "category": "Engineering Culture",
+          "difficulty": "medium",
+          "model_answer": "Effective code review covers: correctness (does it solve the problem?), maintainability (readable, SOLID principles), performance (any N+1 queries, unnecessary loops?), security (input validation, secret exposure), test coverage. Give constructive, specific feedback. Distinguish between blockers and suggestions. Be kind — review the code, not the person.",
+          "tips": "Mention tools (GitHub PRs, SonarQube) and how you balance speed vs thoroughness."
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Describe a project where you had to lead without formal authority.",
+          "category": "Leadership",
+          "model_answer": "Use STAR. Focus on how you built consensus, communicated vision, resolved conflicts, and drove the team toward the goal. Emphasize influence through technical credibility and communication rather than hierarchy.",
+          "tips": "Quantify the outcome — 'delivered 2 weeks early', 'reduced incidents by 30%'."
+        },
+        {
+          "question": "Tell me about a time you disagreed with a technical decision.",
+          "category": "Conflict Resolution",
+          "model_answer": "Show that you raised concerns constructively with data (not emotion), listened to counter-arguments, committed once a decision was made, and learned from the outcome. Mature engineers disagree and commit.",
+          "tips": "Avoid framing anyone as the villain. Focus on the process, not the politics."
+        }
+      ]
+    },
+    "senior": {
+      "technical": [
+        {
+          "question": "How do you approach technical debt in a fast-moving team?",
+          "category": "Engineering Leadership",
+          "difficulty": "hard",
+          "model_answer": "Classify debt (deliberate vs accidental, critical vs cosmetic), quantify its cost (slow deploys, incident frequency, developer friction), maintain a debt backlog with business impact estimates, negotiate 20% capacity for debt reduction, and prevent new debt through standards, linting, and automated quality gates.",
+          "tips": "Show that you frame tech debt as a business risk, not a developer preference."
+        },
+        {
+          "question": "Design a real-time notification system for 10 million users.",
+          "category": "System Design",
+          "difficulty": "hard",
+          "model_answer": "Components: WebSocket gateway (sticky sessions or Redis pub/sub), message broker (Kafka for durability), notification service (fan-out to user devices), persistence store (Cassandra for notification history), push channels (FCM/APNs for mobile). Handle: connection state management, offline buffering, priority queues, rate limiting, and multi-device delivery.",
+          "tips": "Start with requirements. Ask about latency SLA, notification types, delivery guarantees."
+        }
+      ]
+    }
+  },
+  "data_scientist": {
+    "entry": {
+      "technical": [
+        {
+          "question": "What is the difference between supervised and unsupervised learning?",
+          "category": "Machine Learning",
+          "difficulty": "easy",
+          "model_answer": "Supervised learning trains on labeled data to predict outputs (classification, regression). Unsupervised learning finds structure in unlabeled data (clustering, dimensionality reduction, anomaly detection). Semi-supervised learning uses a small labeled set with a large unlabeled set.",
+          "tips": "Give concrete examples: supervised — spam detection; unsupervised — customer segmentation."
+        },
+        {
+          "question": "How do you handle missing data in a dataset?",
+          "category": "Data Preprocessing",
+          "difficulty": "medium",
+          "model_answer": "Options: deletion (listwise if MCAR and small %), mean/median/mode imputation (simple but can distort variance), model-based imputation (KNN, MICE), indicator variables (flag missingness as a feature). The choice depends on the mechanism (MCAR, MAR, MNAR) and downstream model sensitivity.",
+          "tips": "Discuss why understanding the missing data mechanism matters before choosing a strategy."
+        },
+        {
+          "question": "Explain precision, recall, and F1 score.",
+          "category": "Model Evaluation",
+          "difficulty": "medium",
+          "model_answer": "Precision = TP/(TP+FP): of all predicted positives, how many are correct? Recall = TP/(TP+FN): of all actual positives, how many did we catch? F1 = harmonic mean of precision and recall. Use precision when false positives are costly (spam filter); use recall when false negatives are costly (cancer screening). F1 balances both.",
+          "tips": "Be ready to draw a confusion matrix and compute these metrics from raw numbers."
+        }
+      ]
+    },
+    "mid": {
+      "technical": [
+        {
+          "question": "What is overfitting and how do you prevent it?",
+          "category": "Model Training",
+          "difficulty": "medium",
+          "model_answer": "Overfitting occurs when a model learns training data noise rather than the underlying pattern, causing poor generalization. Prevention: cross-validation, regularization (L1/L2), dropout (neural networks), early stopping, ensemble methods (bagging/boosting), feature selection, and getting more diverse training data.",
+          "tips": "Always mention validation curves and the bias-variance tradeoff."
+        },
+        {
+          "question": "How would you approach building an end-to-end ML pipeline?",
+          "category": "MLOps",
+          "difficulty": "hard",
+          "model_answer": "Steps: problem framing (define success metrics, baseline), data collection and validation, EDA, feature engineering and selection, model selection and hyperparameter tuning, evaluation (test set, business metrics), deployment (REST API, batch pipeline, or streaming), monitoring (data drift, model drift, retraining triggers).",
+          "tips": "Mention MLflow or similar tools for experiment tracking to demonstrate production awareness."
+        }
+      ]
+    }
+  },
+  "product_manager": {
+    "entry": {
+      "behavioral": [
+        {
+          "question": "How do you prioritize features when everything is high priority?",
+          "category": "Prioritization",
+          "model_answer": "Use frameworks like RICE (Reach, Impact, Confidence, Effort), MoSCoW (Must/Should/Could/Won't), or Impact vs Effort matrix. Align with business goals and OKRs, gather data (user research, analytics, sales input), make trade-offs explicit and transparent to stakeholders, and communicate the rationale.",
+          "tips": "Mention a specific framework and show you can explain trade-offs to non-technical stakeholders."
+        },
+        {
+          "question": "Tell me about a product you admire and how you would improve it.",
+          "category": "Product Thinking",
+          "model_answer": "Choose a product you genuinely use. Structure: what works well (user pain addressed, elegant UX), user segments underserved, opportunity area, concrete improvement with rationale (not just 'add dark mode'). Tie improvement to a measurable outcome — retention, activation, revenue.",
+          "tips": "Avoid picking the interviewer's product unless you have genuinely insightful critiques."
+        }
+      ],
+      "technical": [
+        {
+          "question": "What metrics would you use to measure the success of a new feature?",
+          "category": "Metrics",
+          "difficulty": "medium",
+          "model_answer": "Tie metrics to the feature's goal. For adoption: DAU/MAU using the feature, activation rate. For engagement: session frequency, depth of use. For value: NPS delta, support ticket volume, conversion uplift. Always define a primary metric and guard metrics (ensure you're not improving one at the expense of another).",
+          "tips": "Distinguish leading indicators (usage) from lagging indicators (revenue) and explain why you track both."
+        }
+      ]
+    }
+  },
+  "devops_engineer": {
+    "entry": {
+      "technical": [
+        {
+          "question": "What is the difference between CI and CD?",
+          "category": "DevOps",
+          "difficulty": "easy",
+          "model_answer": "CI (Continuous Integration) automates building and testing code on every commit, ensuring the main branch is always in a releasable state. CD can mean Continuous Delivery (automated pipeline up to manual production approval) or Continuous Deployment (every passing build goes to production automatically). Together they reduce release risk and cycle time.",
+          "tips": "Name specific tools (Jenkins, GitHub Actions, ArgoCD) and describe a pipeline you've built."
+        },
+        {
+          "question": "Explain the concept of Infrastructure as Code (IaC).",
+          "category": "Cloud/IaC",
+          "difficulty": "medium",
+          "model_answer": "IaC manages infrastructure through machine-readable configuration files rather than manual processes. Benefits: version-controlled, reproducible, auditable infrastructure. Tools: Terraform (declarative, multi-cloud), Ansible (procedural, configuration management), AWS CloudFormation. IaC enables immutable infrastructure patterns and reduces configuration drift.",
+          "tips": "Describe a real IaC scenario: spinning up a VPC, ECS cluster, or Kubernetes cluster declaratively."
+        },
+        {
+          "question": "What is Kubernetes and why is it used?",
+          "category": "Containers/Orchestration",
+          "difficulty": "medium",
+          "model_answer": "Kubernetes is an open-source container orchestration system that automates deployment, scaling, and management of containerized applications. Key concepts: Pods (smallest deployable unit), Deployments (declarative updates), Services (stable networking), Ingress (HTTP routing), ConfigMaps/Secrets, HPA (horizontal auto-scaling). It abstracts infrastructure and ensures desired state.",
+          "tips": "Be ready to walk through a deployment YAML file and explain each section."
+        }
+      ]
+    }
+  },
+  "generic": {
+    "behavioral": [
+      {
+        "question": "Tell me about yourself.",
+        "category": "Introduction",
+        "model_answer": "Structure: present (current role and key responsibilities), past (relevant background and progression), future (why you're excited about this role). Keep it to 2 minutes. Lead with your strongest value proposition for this specific role.",
+        "tips": "Tailor to the job description. Start with your most relevant hook — not where you grew up."
+      },
+      {
+        "question": "What are your greatest strengths?",
+        "category": "Self-Awareness",
+        "model_answer": "Choose 2-3 strengths relevant to the role, back each with a brief concrete example. Avoid generic claims like 'hard worker' without evidence. Instead: 'I'm strong at breaking down ambiguous problems — for example, when our team was stuck on [X], I...'",
+        "tips": "Pick strengths that are genuinely differentiated and directly relevant to the job description."
+      },
+      {
+        "question": "What is your greatest weakness?",
+        "category": "Self-Awareness",
+        "model_answer": "Choose a real weakness (not a strength disguised as weakness). Show self-awareness and the concrete steps you're taking to improve it. Example: 'I used to underestimate time for documentation. I've since adopted time-boxing documentation as part of my definition of done.'",
+        "tips": "Avoid clichés like 'I'm a perfectionist'. Show genuine growth mindset."
+      },
+      {
+        "question": "Why are you looking for a new role?",
+        "category": "Motivation",
+        "model_answer": "Be honest but positive. Focus on what you're moving toward, not what you're escaping. Acceptable reasons: growth ceiling hit, desire for new technical challenges, company pivoted away from your interest area, relocation. Avoid badmouthing current/previous employer.",
+        "tips": "Align your 'moving toward' narrative with what this company/role uniquely offers."
+      }
+    ],
+    "hr": [
+      {
+        "question": "What are your salary expectations?",
+        "model_answer": "Research market rates (Levels.fyi, Glassdoor, LinkedIn Salary). Provide a range based on your experience, the role's scope, and your research. Defer to after receiving an offer if possible. Don't anchor too low — it's hard to recover.",
+        "tips": "Practice saying a number confidently. Silence and hedging signal low confidence to interviewers."
+      },
+      {
+        "question": "Do you have any questions for us?",
+        "model_answer": "Always have 3-4 thoughtful questions: about the team's current technical challenges, how success is measured in the first 90 days, the engineering culture (on-call, code review process), or the company's 1-year roadmap. Avoid questions answered on the website or about PTO.",
+        "tips": "Your questions signal your priorities and level of preparation. Make them specific and insightful."
+      }
+    ]
+  }
+}

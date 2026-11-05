@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IBM Granite — AI Interview Trainer</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --surface2: #252840;
+      --border: #2e3250;
+      --text: #e8eaf6;
+      --muted: #8b90b8;
+      --accent: #5c6bc0;
+      --accent-light: #7986cb;
+      --green: #66bb6a;
+      --yellow: #ffa726;
+      --red: #ef5350;
+      --ibm-blue: #0f62fe;
+      --ibm-blue-light: #4589ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 'Courier New', monospace; min-height: 100vh; }
+
+    header {
+      background: linear-gradient(135deg, #0f1117 0%, #1a1d2e 100%);
+      border-bottom: 1px solid var(--ibm-blue);
+      padding: 16px 32px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    header .ibm-badge {
+      background: var(--ibm-blue); color: #fff;
+      padding: 4px 10px; font-size: 11px; font-weight: 700;
+      border-radius: 3px; letter-spacing: 1px;
+    }
+    header h1 { font-size: 20px; color: var(--text); font-weight: 600; }
+    header .subtitle { font-size: 12px; color: var(--muted); margin-left: auto; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+    .tabs { display: flex; gap: 4px; margin-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .tab {
+      padding: 10px 20px; cursor: pointer; font-size: 13px;
+      border: 1px solid transparent; border-bottom: none;
+      border-radius: 6px 6px 0 0; color: var(--muted);
+      background: transparent; transition: all 0.2s;
+    }
+    .tab:hover { color: var(--text); background: var(--surface); }
+    .tab.active { background: var(--surface); color: var(--accent-light); border-color: var(--border); border-bottom-color: var(--surface); }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 24px; margin-bottom: 20px;
+    }
+    .card h3 { font-size: 14px; color: var(--accent-light); margin-bottom: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; margin-top: 14px; }
+    label:first-child { margin-top: 0; }
+    input, select, textarea {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text); font-family: inherit;
+      font-size: 13px; padding: 8px 12px; transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ibm-blue); }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 4px; font-size: 13px;
+      font-family: inherit; cursor: pointer; border: none;
+      font-weight: 600; transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .btn-primary { background: var(--ibm-blue); color: #fff; }
+    .btn-primary:hover { background: var(--ibm-blue-light); }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 180px; }
+
+    .result-box {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 20px; margin-top: 20px;
+      white-space: pre-wrap; font-size: 13px; line-height: 1.7; color: var(--text);
+    }
+
+    .question-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; margin-bottom: 12px;
+    }
+    .question-card .q-num { color: var(--ibm-blue-light); font-weight: 700; font-size: 12px; }
+    .question-card .q-text { margin: 6px 0; font-size: 14px; color: var(--text); line-height: 1.5; }
+    .question-card .q-meta { font-size: 11px; color: var(--muted); }
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 10px;
+      font-size: 11px; font-weight: 600; margin-right: 6px;
+    }
+    .badge-easy { background: rgba(102,187,106,0.15); color: var(--green); }
+    .badge-medium { background: rgba(255,167,38,0.15); color: var(--yellow); }
+    .badge-hard { background: rgba(239,83,80,0.15); color: var(--red); }
+    .badge-cat { background: rgba(92,107,192,0.15); color: var(--accent-light); }
+
+    .demo-banner {
+      background: rgba(255,167,38,0.08); border: 1px solid rgba(255,167,38,0.3);
+      border-radius: 6px; padding: 12px 16px; margin-bottom: 20px;
+      font-size: 12px; color: var(--yellow);
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+    .dot-green { background: var(--green); }
+    .dot-yellow { background: var(--yellow); }
+
+    .spinner {
+      display: none; width: 18px; height: 18px;
+      border: 2px solid var(--border); border-top-color: var(--ibm-blue);
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading .spinner { display: inline-block; }
+    .loading .btn-text { display: none; }
+
+    .feedback-section { margin-top: 12px; }
+    .feedback-section h4 { font-size: 12px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .feedback-section p { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .score-badge { font-size: 22px; font-weight: 700; color: var(--ibm-blue-light); }
+
+    footer { text-align: center; padding: 32px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="ibm-badge">IBM</span>
+  <h1>🎯 AI Interview Trainer Agent</h1>
+  <span class="subtitle">Powered by IBM Granite (watsonx.ai) + RAG</span>
+</header>
+
+<div class="container">
+
+  <div id="status-bar" style="margin-bottom:20px; font-size:12px; color:var(--muted);">
+    <span class="status-dot dot-yellow" id="status-dot"></span>
+    <span id="status-text">Checking connection...</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('profile')">① Profile</button>
+    <button class="tab" onclick="showTab('questions')">② Questions</button>
+    <button class="tab" onclick="showTab('practice')">③ Practice Q&A</button>
+    <button class="tab" onclick="showTab('plan')">④ Prep Plan</button>
+  </div>
+
+  <!-- ─── TAB 1: PROFILE ─────────────────────────────────────────── -->
+  <div id="tab-profile" class="panel active">
+    <div class="card">
+      <h3>Candidate Profile</h3>
+      <div class="row">
+        <div>
+          <label>Your Name</label>
+          <input type="text" id="p-name" placeholder="e.g. Priya Sharma" />
+        </div>
+        <div>
+          <label>Target Role</label>
+          <select id="p-role">
+            <option>Software Engineer</option>
+            <option>Data Scientist</option>
+            <option>Product Manager</option>
+            <option>DevOps Engineer</option>
+            <option>Machine Learning Engineer</option>
+            <option>Frontend Developer</option>
+            <option>Backend Developer</option>
+            <option>Full Stack Developer</option>
+            <option>Cloud Engineer</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Experience Level</label>
+          <select id="p-level">
+            <option value="entry">Entry (0–2 years)</option>
+            <option value="mid">Mid (3–6 years)</option>
+            <option value="senior">Senior (7+ years)</option>
+          </select>
+        </div>
+        <div>
+          <label>Years of Experience</label>
+          <input type="number" id="p-years" value="0" min="0" max="40" />
+        </div>
+      </div>
+      <label>Key Skills (comma-separated)</label>
+      <input type="text" id="p-skills" placeholder="e.g. Python, AWS, React, SQL" />
+
+      <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+        <button class="btn btn-primary" onclick="saveProfile()">
+          <span class="spinner"></span>
+          <span class="btn-text">Save Profile & Continue →</span>
+        </button>
+        <span id="profile-status" style="font-size:12px; color:var(--green);"></span>
+      </div>
+    </div>
+
+    <div class="card" id="profile-preview" style="display:none;">
+      <h3>Profile Summary</h3>
+      <pre class="result-box" id="profile-text"></pre>
+    </div>
+  </div>
+
+  <!-- ─── TAB 2: QUESTIONS ───────────────────────────────────────── -->
+  <div id="tab-questions" class="panel">
+    <div class="card">
+      <h3>Generate Interview Questions</h3>
+      <div class="row">
+        <div>
+          <label>Number of Questions</label>
+          <select id="q-num">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <button class="btn btn-primary" id="gen-btn" onclick="generateQuestions()">
+          <span class="spinner"></span>
+          <span class="btn-text">⚡ Generate with IBM Granite</span>
+        </button>
+      </div>
+    </div>
+    <div id="questions-output"></div>
+  </div>
+
+  <!-- ─── TAB 3: PRACTICE Q&A ──────────────────────────────────── -->
+  <div id="tab-practice" class="panel">
+    <div class="card">
+      <h3>Practice Q&A with AI Feedback</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">
+        Type an interview question and your answer below. IBM Granite will evaluate your response and give detailed feedback.
+      </p>
+      <label>Interview Question</label>
+      <textarea id="eval-question" rows="3" placeholder="e.g. Tell me about a time you resolved a conflict with a coworker."></textarea>
+      <label>Your Answer</label>
+      <textarea id="eval-answer" rows="6" placeholder="Type your answer here..."></textarea>
+      <div style="margin-top:16px;">
+        <button class="btn btn-primary" id="eval-btn" onclick="evaluateAnswer()">
+          <span class="spinner"></span>
+          <span class="btn-text">📊 Get AI Feedback</span>
+        </button>
+      </div>
+    </div>
+    <div id="eval-output"></div>
+  </div>
+
+  <!-- ─── TAB 4: PREP PLAN ─────────────────────────────────────── -->
+  <div id="tab-plan" class="panel">
+    <div class="card">
+      <h3>Personalized Preparation Plan</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">
+        IBM Granite will generate a tailored 4-week preparation plan and improvement tips based on your profile.
+      </p>
+      <button class="btn btn-primary" id="plan-btn" onclick="getPlan()">
+        <span class="spinner"></span>
+        <span class="btn-text">📅 Generate My Plan</span>
+      </button>
+    </div>
+    <div id="plan-output"></div>
+  </div>
+
+</div>
+
+<footer>
+  Powered by IBM Granite (watsonx.ai) · RAG with ChromaDB · IBM Cloud Lite · AI Interview Trainer Agent
+</footer>
+
+<script>
+  const API = '';  // Same origin — Flask serves both HTML and API
+
+  let currentProfile = {
+    name: '', job_title: 'Software Engineer',
+    experience_level: 'entry', years_experience: 0, skills: []
+  };
+
+  // ── Health check on load ─────────────────────────────────
+  async function checkHealth() {
+    try {
+      const res = await fetch(API + '/health');
+      const data = await res.json();
+      const dot = document.getElementById('status-dot');
+      const txt = document.getElementById('status-text');
+      if (!data.demo_mode) {
+        dot.className = 'status-dot dot-green';
+        txt.textContent = `Connected — IBM Granite (${data.model}) · RAG: ${data.rag_status}`;
+      } else if (data.connection_error && data.connection_error.includes('no_associated_service_instance')) {
+        dot.className = 'status-dot dot-yellow';
+        txt.textContent = `⚠️ WML service not associated with watsonx project — see README Setup Step 2`;
+      } else if (data.connection_error) {
+        dot.className = 'status-dot dot-yellow';
+        txt.textContent = `⚠️ IBM connection error: ${data.connection_error.slice(0,120)}`;
+      } else {
+        dot.className = 'status-dot dot-yellow';
+        txt.textContent = `Demo Mode — Model: ${data.model} · Add IBM credentials to .env for live generation`;
+      }
+    } catch (e) {
+      document.getElementById('status-text').textContent = 'API server not running — start with: python app.py';
+    }
+  }
+  checkHealth();
+
+  // ── Tab switching ────────────────────────────────────────
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  // ── Profile ──────────────────────────────────────────────
+  function saveProfile() {
+    const name = document.getElementById('p-name').value.trim();
+    const role = document.getElementById('p-role').value;
+    const level = document.getElementById('p-level').value;
+    const years = parseInt(document.getElementById('p-years').value) || 0;
+    const skills = document.getElementById('p-skills').value.split(',').map(s => s.trim()).filter(Boolean);
+
+    currentProfile = { name, job_title: role, experience_level: level, years_experience: years, skills };
+
+    document.getElementById('profile-text').textContent =
+      `Name: ${name || 'Not provided'}\nTarget Role: ${role}\nExperience: ${level} (${years} years)\nSkills: ${skills.join(', ') || 'Not specified'}`;
+    document.getElementById('profile-preview').style.display = 'block';
+    document.getElementById('profile-status').textContent = '✅ Profile saved!';
+    setTimeout(() => document.getElementById('profile-status').textContent = '', 2000);
+  }
+
+  // ── Question Generation ───────────────────────────────────
+  async function generateQuestions() {
+    const btn = document.getElementById('gen-btn');
+    setLoading(btn, true);
+    const num = parseInt(document.getElementById('q-num').value);
+    try {
+      const res = await fetch(API + '/questions', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ profile: currentProfile, num_questions: num })
+      });
+      const data = await res.json();
+      renderQuestions(data);
+    } catch(e) {
+      document.getElementById('questions-output').innerHTML = `<div class="result-box" style="color:var(--red);">Error: ${e.message}. Is the Flask server running?</div>`;
+    }
+    setLoading(btn, false);
+  }
+
+  function renderQuestions(data) {
+    let html = '';
+    if (data.demo_mode) {
+      html += `<div class="demo-banner">⚠️ Demo Mode — Connect IBM watsonx credentials to generate live tailored questions.</div>`;
+    }
+    const qs = data.questions || [];
+    if (!qs.length) { html += `<div class="result-box">${data.raw_response || 'No questions generated.'}</div>`; }
+    else {
+      qs.forEach((q, i) => {
+        const diff = (q.difficulty || 'medium').toLowerCase();
+        const diffBadge = `<span class="badge badge-${diff}">${diff}</span>`;
+        const catBadge = `<span class="badge badge-cat">${q.category || 'General'}</span>`;
+        html += `<div class="question-card">
+          <div class="q-num">Q${i+1}</div>
+          <div class="q-text">${escHtml(q.question)}</div>
+          <div class="q-meta">${catBadge}${diffBadge}
+          ${q.evaluating ? `<span style="color:var(--muted)"> · Evaluating: ${escHtml(q.evaluating)}</span>` : ''}
+          </div>
+        </div>`;
+      });
+    }
+    document.getElementById('questions-output').innerHTML = html;
+  }
+
+  // ── Answer Evaluation ─────────────────────────────────────
+  async function evaluateAnswer() {
+    const btn = document.getElementById('eval-btn');
+    const question = document.getElementById('eval-question').value.trim();
+    const answer = document.getElementById('eval-answer').value.trim();
+    if (!question || !answer) { alert('Please enter both a question and your answer.'); return; }
+    setLoading(btn, true);
+    try {
+      const res = await fetch(API + '/evaluate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ question, answer })
+      });
+      const data = await res.json();
+      renderFeedback(data);
+    } catch(e) {
+      document.getElementById('eval-output').innerHTML = `<div class="result-box" style="color:var(--red);">Error: ${e.message}</div>`;
+    }
+    setLoading(btn, false);
+  }
+
+  function renderFeedback(data) {
+    let html = '';
+    if (data.demo_mode) html += `<div class="demo-banner">⚠️ Demo Mode active.</div>`;
+    const s = data.structured || {};
+    html += `<div class="card">
+      <h3>📊 AI Feedback</h3>
+      ${s.overall_score ? `<div style="margin-bottom:16px;"><span class="score-badge">${escHtml(s.overall_score)}</span></div>` : ''}
+      ${s.strengths ? feedbackSection('✅ Strengths', s.strengths) : ''}
+      ${s.improvements ? feedbackSection('⚠️ Areas for Improvement', s.improvements) : ''}
+      ${s.model_answer ? feedbackSection('💡 Model Answer', s.model_answer) : ''}
+      ${s.star_check ? feedbackSection('⭐ STAR Check', s.star_check) : ''}
+      ${s.key_tip ? feedbackSection('🔑 Key Tip', s.key_tip) : ''}
+      ${!Object.values(s).some(Boolean) ? `<pre class="result-box">${escHtml(data.feedback_raw)}</pre>` : ''}
+    </div>`;
+    document.getElementById('eval-output').innerHTML = html;
+  }
+
+  function feedbackSection(title, content) {
+    return `<div class="feedback-section"><h4>${title}</h4><p>${escHtml(content).replace(/\n/g,'<br>')}</p></div>`;
+  }
+
+  // ── Preparation Plan ──────────────────────────────────────
+  async function getPlan() {
+    const btn = document.getElementById('plan-btn');
+    setLoading(btn, true);
+    try {
+      const res = await fetch(API + '/plan', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ profile: currentProfile })
+      });
+      const data = await res.json();
+      let html = '';
+      if (data.demo_mode) html += `<div class="demo-banner">⚠️ Demo Mode active.</div>`;
+      if (data.plan) {
+        html += `<div class="card"><h3>📅 4-Week Preparation Plan</h3><pre class="result-box">${escHtml(data.plan)}</pre></div>`;
+      }
+      if (data.tips) {
+        html += `<div class="card"><h3>💡 Improvement Tips</h3><pre class="result-box">${escHtml(data.tips)}</pre></div>`;
+      }
+      document.getElementById('plan-output').innerHTML = html;
+    } catch(e) {
+      document.getElementById('plan-output').innerHTML = `<div class="result-box" style="color:var(--red);">Error: ${e.message}</div>`;
+    }
+    setLoading(btn, false);
+  }
+
+  // ── Utils ─────────────────────────────────────────────────
+  function setLoading(btn, loading) {
+    btn.disabled = loading;
+    btn.classList.toggle('loading', loading);
+  }
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "guideline": "Resume Screening",
+    "stage": "pre-interview",
+    "description": "ATS systems scan for keywords matching the job description. Tailor your resume to each role by mirroring language from the job posting.",
+    "tips": [
+      "Use standard section headers (Experience, Education, Skills)",
+      "Include measurable accomplishments, not just responsibilities",
+      "Keep it to 1-2 pages; 1 page for <5 years experience",
+      "Avoid graphics, tables, or unusual fonts that confuse ATS parsers",
+      "Use common role titles (e.g., 'Software Engineer' not 'Code Wizard')"
+    ]
+  },
+  {
+    "guideline": "Phone/Video Screen",
+    "stage": "screening",
+    "description": "Typically 30-45 minutes with a recruiter or hiring manager. Goal: confirm basic fit on experience, motivation, and communication.",
+    "tips": [
+      "Have a 2-minute 'tell me about yourself' polished",
+      "Know your resume cold — be ready to expand on any bullet",
+      "Research the company: funding stage, products, recent news",
+      "Prepare 3 thoughtful questions about the role",
+      "Test your audio/video setup 10 minutes beforehand"
+    ]
+  },
+  {
+    "guideline": "Technical Assessment",
+    "stage": "technical",
+    "description": "Tests core technical competence via coding, case studies, or take-home assignments.",
+    "tips": [
+      "Read the problem fully before writing code",
+      "Communicate your thought process clearly",
+      "Write clean, readable code — not just code that passes",
+      "Handle edge cases explicitly",
+      "Ask clarifying questions; assumptions should be stated"
+    ]
+  },
+  {
+    "guideline": "Behavioral Interview",
+    "stage": "behavioral",
+    "description": "Evaluates soft skills, cultural fit, and past behavior patterns using STAR method questions.",
+    "tips": [
+      "Prepare 6-8 STAR stories that can flex to multiple questions",
+      "Be specific — avoid vague generalizations",
+      "Quantify outcomes whenever possible",
+      "Show genuine reflection and learning in failure stories",
+      "Match your stories to the company's stated values"
+    ]
+  },
+  {
+    "guideline": "Offer Negotiation",
+    "stage": "offer",
+    "description": "Negotiating compensation and terms once an offer is extended.",
+    "tips": [
+      "Always negotiate — the first offer is rarely the best",
+      "Anchor high but reasonably (15-20% above your target)",
+      "Consider total compensation: base, equity, bonus, benefits",
+      "Get the offer in writing before giving notice",
+      "Respond within the timeline given; don't ghost"
+    ]
+  }
+]
