@@ -3,7 +3,7 @@
 > **AICTE Problem Statement #22** · Powered by **IBM Granite (watsonx.ai)** · RAG with ChromaDB · IBM Cloud Lite
 
 An intelligent interview preparation assistant that uses Retrieval-Augmented Generation to deliver hyper-personalised question sets, real-time answer feedback, and structured preparation plans — all tailored to a candidate's profile, experience level, and target role.
-
+link of the project : https://poojithasiliveri2345-cmd-aicte-ai-trainer--streamlit-app-5l5pjb.streamlit.app/
 ---
 
 ## Table of Contents
