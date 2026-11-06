@@ -16,4 +16,5 @@ langchain-community>=0.2.0
 langchain-ibm>=0.1.7
 rich>=13.7.1
 click>=8.1.7
+streamlit>=1.35.0
 pydantic>=2.7.1
